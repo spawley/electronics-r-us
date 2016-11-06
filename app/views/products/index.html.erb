@@ -1,0 +1,12 @@
+<%= render 'menu' %>
+
+<div class="row">
+
+  <% @products.each do |product| %>
+    <div class="col-lg-4 col-sm-6 col-xs-12">
+        <a href="#">
+             <img src="<%=product.image %>" class="thumbnail img-responsive">
+        </a>
+    </div>
+    <% end %>
+</div>

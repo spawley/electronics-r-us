@@ -1,0 +1,13 @@
+.thumbnail {
+    height:250px;
+    width:98%;
+}
+
+body{
+  margin: 0;
+}
+
+.thumbnail {
+  margin-left: 5px;
+  margin-right: 5px;
+}
