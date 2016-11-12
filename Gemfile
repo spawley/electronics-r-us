@@ -33,6 +33,8 @@ gem 'activeadmin', github: 'activeadmin'
 
 gem 'devise'
 
+gem "paperclip", "~> 5.0.0"
+
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
 
