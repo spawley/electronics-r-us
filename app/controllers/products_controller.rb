@@ -65,6 +65,11 @@ class ProductsController < ApplicationController
     end
   end
 
+  def contact
+    @text = session[:my_key]
+
+  end
+
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_product
@@ -75,4 +80,5 @@ class ProductsController < ApplicationController
     def product_params
       params.require(:product).permit(:name, :description, :price, :stock_quantity, :image, :created_at, :updated_at)
     end
+
 end
