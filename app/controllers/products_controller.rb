@@ -66,7 +66,15 @@ class ProductsController < ApplicationController
   end
 
   def contact
-    @text = session[:my_key]
+    #$text = session[:my_key1]
+  end
+
+  def set_text
+    session[:my_key1] = 'my value'
+    #redirect_to "/"
+
+    $text = params[:my_field]
+
 
   end
 

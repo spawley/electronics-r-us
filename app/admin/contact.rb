@@ -1,12 +1,28 @@
-ActiveAdmin.register_page "Did" do
-    # ..
-    collection_action :add_range, :method => :get do
+ActiveAdmin.register_page "my_custom_page" do
+
+  page_action :foo, method: :post do
+    # do some logic using params['my_field']
+
+  #  session[:my_key] = "555555555"
+
+
+  end
+
+  content do
+    #session[:my_key] = "333333333"
+
+
+
+    form url: "my_custom_page/foo", method: :post do |f|
+      f.input :my_field, type: :text, name: 'my_field'
+      f.input :submit, type: :submit
     end
-    collection_action :add_range, :method => :post do
-    end
+  end
+
 end
 
-<%= semantic_form_for :range, :url => add_range_admin_dids_path do |f| %>
-    <%= f.inputs :start, :end %>
-    <%= f.buttons :commit %>
-<% end %>
+
+
+#action_item :add do
+#  link_to "Add Event", "my_custom_page/foo", method: :post
+#end

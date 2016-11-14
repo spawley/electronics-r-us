@@ -7,8 +7,8 @@ Rails.application.routes.draw do
   root 'products#index'
   get '/contact' => 'products#contact'
 
-  #post '/admin/contact'
-  #match "/admin/contact" => 'admin/contact', via: :post
+  post '/admin/my_custom_page' => 'products#set_text'
+  #match "/admin/contact" => 'admin_users#ddd', via: :post
 
 
 end
