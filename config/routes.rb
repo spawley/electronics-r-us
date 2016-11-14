@@ -6,8 +6,12 @@ Rails.application.routes.draw do
 
   root 'products#index'
   get '/contact' => 'products#contact'
+  get '/about'   => 'products#about'
 
-  post '/admin/my_custom_page' => 'products#set_text'
+
+  post '/admin/contact/set_text' => 'products#set_contact_text'
+  post '/admin/about/set_text'   => 'products#set_about_text'
+
   #match "/admin/contact" => 'admin_users#ddd', via: :post
 
 

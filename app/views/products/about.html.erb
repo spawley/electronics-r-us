@@ -3,17 +3,11 @@
 <div class="centered"
 	<div class="row">
 
-	  <% @products.each do |product| %>
-	    <div class="col-lg-4 col-sm-6 col-xs-12 custom-border">
-	        <a href="<%= product_path(product) %>">
-	             <img src="<%=product.image %>" class="thumbnail img-responsive">
-	        </a>
-					<div class="col-md-12">
-	 					<h3><%=product.name %></h3>
-						<h4>$ <%=product.price %></h4>
-					</div>
-	    </div>
-	    <% end %>
+		<% if $about_text != nil %>
+			<p><%= $about_text.inspect.gsub( /\A"/m, "" ).gsub( /"\Z/m, "" ) %></p>
+		<% else %>
+		  <p>This is some sample text for the about page</p>
+		<% end %>
 
 	</div>
 </div>

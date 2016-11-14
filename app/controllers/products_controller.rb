@@ -69,12 +69,23 @@ class ProductsController < ApplicationController
     #$text = session[:my_key1]
   end
 
-  def set_text
-    session[:my_key1] = 'my value'
+  def about
+    #$text = session[:my_key1]
+  end
+
+  def set_contact_text
+    #session[:my_key1] = 'my value'
     #redirect_to "/"
 
-    $text = params[:my_field]
+    $contact_text = params[:my_field]
 
+  end
+
+  def set_about_text
+    #session[:my_key1] = 'my value'
+    #redirect_to "/"
+
+    $about_text = params[:my_field]
 
   end
 
