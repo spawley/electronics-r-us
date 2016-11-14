@@ -7,9 +7,8 @@ class ProductsController < ApplicationController
     @products = Product.all
 
     if params[:search]
-      @products = Product.search(params[:search]).order("created_at DESC")
+      @products = products.search(params[:search]).order("created_at DESC")
     end
-    
   end
 
   # GET /products/1
@@ -66,6 +65,30 @@ class ProductsController < ApplicationController
     end
   end
 
+  def contact
+    #$text = session[:my_key1]
+  end
+
+  def about
+    #$text = session[:my_key1]
+  end
+
+  def set_contact_text
+    #session[:my_key1] = 'my value'
+    #redirect_to "/"
+
+    $contact_text = params[:my_field]
+
+  end
+
+  def set_about_text
+    #session[:my_key1] = 'my value'
+    #redirect_to "/"
+
+    $about_text = params[:my_field]
+
+  end
+
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_product
@@ -76,4 +99,5 @@ class ProductsController < ApplicationController
     def product_params
       params.require(:product).permit(:name, :description, :price, :stock_quantity, :image, :created_at, :updated_at)
     end
+
 end

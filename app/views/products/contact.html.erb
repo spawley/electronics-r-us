@@ -1,0 +1,13 @@
+<%= render 'menu' %>
+
+<div class="centered"
+	<div class="row">
+
+		<% if $contact_text != nil %>
+			<p><%= $contact_text.inspect.gsub( /\A"/m, "" ).gsub( /"\Z/m, "" ) %></p>
+		<% else %>
+		  <p>This is some sample text for the contact page</p>
+		<% end %>
+
+	</div>
+</div>
