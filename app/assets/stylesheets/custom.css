@@ -19,10 +19,15 @@ body{
 }
 
 .row {
-  width:90%;
+  
 }
 
 .centered {
    margin: auto;
    max-width: 90%;
+ }
+
+ .index-dropdown {
+
+   margin-bottom: 40px;
  }

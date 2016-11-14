@@ -5,10 +5,29 @@ class ProductsController < ApplicationController
   # GET /products.json
   def index
     @products = Product.all
+    @categories = Category.pluck(:name, :id)
+
 
     if params[:search]
-      @products = products.search(params[:search]).order("created_at DESC")
+      @products = Product.search(params[:search]).order("created_at DESC")
     end
+
+    case params[:category]
+
+    when "Show All"
+      @products = Product.all
+      @cat_value = nil
+    when "processors"
+      @products = Product.where('category_id = ?', 1)
+      @cat_value = 1
+    when "Graphics Cards"
+      @products = Product.where('category_id = ?', 2)
+      @cat_value = 2
+    else
+      @products = Product.all
+      @cat_value = nil
+    end
+
   end
 
   # GET /products/1

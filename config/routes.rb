@@ -8,6 +8,8 @@ Rails.application.routes.draw do
   get '/contact' => 'products#contact'
   get '/about'   => 'products#about'
 
+  get '/category'   => 'products#index'
+
 
   post '/admin/contact/set_text' => 'products#set_contact_text'
   post '/admin/about/set_text'   => 'products#set_about_text'

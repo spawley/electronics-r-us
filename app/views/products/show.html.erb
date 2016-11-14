@@ -1,4 +1,11 @@
+<%= render 'menu' %>
+
+
 <p id="notice"><%= notice %></p>
+
+<div class="col-lg-4 col-sm-6 col-xs-12 custom-border" style="margin-right: 20px;">
+  <img src="<%=@product.image %>" class="thumbnail img-responsive">
+</div>
 
 <p>
   <strong>Name:</strong>
@@ -21,13 +28,5 @@
 </p>
 
 <p>
-  <strong>Created at:</strong>
-  <%= @product.created_at %>
+  <button type="button" class="btn btn-success">Add to Cart</button>
 </p>
-
-<p>
-  <strong>Updated at:</strong>
-  <%= @product.updated_at %>
-</p>
-
-<%= link_to 'Back', products_path %>

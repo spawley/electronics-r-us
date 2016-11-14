@@ -1,7 +1,15 @@
 <%= render 'menu' %>
 
-<div class="centered"
+<div class="centered">
+
 	<div class="row">
+		<div class="index-dropdown">
+			<% if @cat_value != nil  %>
+				<%= select("name", "id", @categories, :selected => @cat_value, :include_blank => 'Show All') %>
+			<% else %>
+			<%= select("name", "id", @categories, :include_blank => 'Show All') %>
+			<% end %>
+		</div>
 
 	  <% @products.each do |product| %>
 	    <div class="col-lg-4 col-sm-6 col-xs-12 custom-border">
@@ -17,3 +25,16 @@
 
 	</div>
 </div>
+
+<script>
+  $("select").change(function(){
+
+		var dropdown = document.getElementById("name_id");
+		var selectedText = dropdown.options[dropdown.selectedIndex].text;
+
+		//alert(selectedText);
+
+		window.location.href = "<% request.original_url %>" + "/?category=" + selectedText;
+
+  });
+</script>
