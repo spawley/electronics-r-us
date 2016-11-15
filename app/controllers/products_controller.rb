@@ -7,9 +7,9 @@ class ProductsController < ApplicationController
 
     @products   = Product.all
 
-    if @products.count() > 2
-      @products   = Product.all.limit(2)
-      @pagintated = Product.all.count() / 2.0
+    if @products.count() > 6
+      @products   = Product.all.limit(6)
+      @pagintated = Product.all.count() / 6.0
     end
 
     @categories = Category.pluck(:name, :id)
@@ -32,9 +32,10 @@ class ProductsController < ApplicationController
 
     if params[:page].to_i > 1
 
-      @display = (params[:page].to_i)
+      @display = (params[:page].to_i - 1) * 6
 
-      @products = Product.limit(2).offset(@display)
+
+      @products = Product.limit(6).offset(@display)
     end
 
   end
