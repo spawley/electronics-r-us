@@ -4,28 +4,37 @@ class ProductsController < ApplicationController
   # GET /products
   # GET /products.json
   def index
-    @products = Product.all
-    @categories = Category.pluck(:name, :id)
 
+    @products   = Product.all
+
+    if @products.count() > 2
+      @products   = Product.all.limit(2)
+      @pagintated = Product.all.count() / 2.0
+    end
+
+    @categories = Category.pluck(:name, :id)
 
     if params[:search]
       @products = Product.search(params[:search]).order("created_at DESC")
     end
 
     case params[:category]
+      when "Show All"
+        @products = Product.all
+        @cat_value = nil
+      when "processors"
+        @products = Product.where('category_id = ?', 1)
+        @cat_value = 1
+      when "Graphics Cards"
+        @products = Product.where('category_id = ?', 2)
+        @cat_value = 2
+    end
 
-    when "Show All"
-      @products = Product.all
-      @cat_value = nil
-    when "processors"
-      @products = Product.where('category_id = ?', 1)
-      @cat_value = 1
-    when "Graphics Cards"
-      @products = Product.where('category_id = ?', 2)
-      @cat_value = 2
-    else
-      @products = Product.all
-      @cat_value = nil
+    if params[:page].to_i > 1
+
+      @display = (params[:page].to_i)
+
+      @products = Product.limit(2).offset(@display)
     end
 
   end

@@ -7,7 +7,7 @@
 			<% if @cat_value != nil  %>
 				<%= select("name", "id", @categories, :selected => @cat_value, :include_blank => 'Show All') %>
 			<% else %>
-			<%= select("name", "id", @categories, :include_blank => 'Show All') %>
+				<%= select("name", "id", @categories, :include_blank => 'Show All') %>
 			<% end %>
 		</div>
 
@@ -24,7 +24,28 @@
 	    <% end %>
 
 	</div>
+	<div class="container">
+  <ul class="pagination">
+		<%= @display %>
+
+
+		<% if @pagintated != nil  %>
+			<% @count = (@pagintated / 1)%>
+			<% (1..@count).each do |i| %>
+				<li><a href="<% request.original_url %>/?page=<%= i %>" ><%= i %></a></li>
+				<% @i = i%>
+			<% end %>
+			<% if @pagintated % 1 != 0 %>
+			<li><a href="<% request.original_url %>/?page=<%= @i + 1 %>" ><%= @i + 1 %></a></li>
+			<% end %>
+		<% else %>
+
+		<% end %>
+
+  </ul>
 </div>
+</div>
+
 
 <script>
   $("select").change(function(){
