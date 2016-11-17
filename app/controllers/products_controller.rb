@@ -20,7 +20,7 @@ class ProductsController < ApplicationController
 
     case params[:category]
       when "Show All"
-        @products = Product.all
+        @products = Product.all.limit(6)
         @cat_value = nil
       when "processors"
         @products = Product.where('category_id = ?', 1)
@@ -28,6 +28,9 @@ class ProductsController < ApplicationController
       when "Graphics Cards"
         @products = Product.where('category_id = ?', 2)
         @cat_value = 2
+      when "computers"
+        @products = Product.where('category_id = ?', 3)
+        @cat_value = 3
     end
 
     if params[:page].to_i > 1
