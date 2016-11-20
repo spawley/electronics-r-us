@@ -37,7 +37,6 @@ class ProductsController < ApplicationController
 
       @display = (params[:page].to_i - 1) * 6
 
-
       @products = Product.limit(6).offset(@display)
     end
 
