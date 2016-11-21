@@ -1,1 +1,6 @@
-<%= link_to "#{current_order.line_items.size} Items in Cart ( 22 )", cart_path, class: "btn btn-link" %>
+
+<% @cart_quantity = 0 %>
+<% current_order.line_items.each do |line_item| %>
+  <% @cart_quantity += line_item.quantity %>
+<% end %>
+<%= link_to  @cart_quantity.to_s + " Items in Cart ( #{number_to_currency current_order.subtotal} )", cart_path, class: "btn btn-link" %>
