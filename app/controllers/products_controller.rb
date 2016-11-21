@@ -6,6 +6,8 @@ class ProductsController < ApplicationController
   def index
 
     @products   = Product.all
+    @line_item = current_order.line_items.new
+
 
     if @products.count() > 6
       @products   = Product.all.limit(6)
