@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20161120205204) do
+ActiveRecord::Schema.define(version: 20161121191953) do
 
   create_table "active_admin_comments", force: :cascade do |t|
     t.string   "namespace"
@@ -62,13 +62,15 @@ ActiveRecord::Schema.define(version: 20161120205204) do
   end
 
   create_table "line_items", force: :cascade do |t|
-    t.integer  "quantity"
-    t.decimal  "price"
     t.integer  "product_id"
     t.integer  "order_id"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.decimal  "subtotal"
+    t.decimal  "unit_price",  precision: 12, scale: 3
+    t.integer  "quantity"
+    t.decimal  "total_price", precision: 12, scale: 3
+    t.datetime "created_at",                           null: false
+    t.datetime "updated_at",                           null: false
+    t.index ["order_id"], name: "index_line_items_on_order_id"
+    t.index ["product_id"], name: "index_line_items_on_product_id"
   end
 
   create_table "order_statuses", force: :cascade do |t|
@@ -83,8 +85,10 @@ ActiveRecord::Schema.define(version: 20161120205204) do
     t.decimal  "gst_rate"
     t.decimal  "hst_rate"
     t.integer  "customer_id"
-    t.datetime "created_at",  null: false
-    t.datetime "updated_at",  null: false
+    t.datetime "created_at",                               null: false
+    t.datetime "updated_at",                               null: false
+    t.decimal  "subtotal",        precision: 12, scale: 3
+    t.integer  "order_status_id"
   end
 
   create_table "products", force: :cascade do |t|

@@ -7,6 +7,9 @@ Rails.application.routes.draw do
 
   get 'carts/show'
 
+  resources :line_items, only: [:create, :update, :destroy]
+  resource :cart, only: [:show]
+
   devise_for :admin_users, ActiveAdmin::Devise.config
   ActiveAdmin.routes(self)
   resources :products

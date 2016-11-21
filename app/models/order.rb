@@ -1,14 +1,18 @@
-class Order < ApplicationRecord
+class Order < ActiveRecord::Base
+  belongs_to :order_status
   has_many :line_items
-  has_many :products, :through => :line_items
-  belongs_to :customer
   before_create :set_order_status
-end
+  before_save :update_subtotal
 
-def subtotal
-  order_items.collect { |oi| oi.valid? ? (oi.quantity * oi.unit_price) : 0 }.sum
-end
+  def subtotal
+    line_items.collect { |oi| oi.valid? ? (oi.quantity * oi.unit_price) : 0 }.sum
+  end
+private
+  def set_order_status
+    self.order_status_id = 1
+  end
 
-def set_order_status
-  self.order_status_id = 1
+  def update_subtotal
+    self[:subtotal] = subtotal
+  end
 end
