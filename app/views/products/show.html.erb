@@ -28,5 +28,12 @@
 </p>
 
 <p>
-  <button type="button" class="btn btn-success">Add to Cart</button>
+  <%= form_tag("/line_items", :controller => :line_items, remote: true,  method: "post") do %>
+    <div class="input-group">
+      <%= hidden_field_tag :tab , "line_item" %>
+      <%= number_field(:line_item, :quantity, in: 1.0..20.0, step: 1) %>
+      <%= hidden_field_tag "line_item[product_id]", @product.id %>
+      <%= submit_tag("Add to Cart") %>
+    </div>
+  <% end %>
 </p>

@@ -47,6 +47,7 @@ class ProductsController < ApplicationController
   # GET /products/1
   # GET /products/1.json
   def show
+    @line_item = current_order.line_items.new
   end
 
   # GET /products/new

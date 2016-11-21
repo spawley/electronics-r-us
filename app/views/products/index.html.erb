@@ -12,7 +12,9 @@
 		</div>
 
 	  <% @products.each do |product| %>
-				<%= render "product_row", product: product, line_item: @line_item %>
+		    <div class="col-lg-4 col-sm-6 col-xs-12 custom-border">
+					<%= render "product_row", product: product, line_item: @line_item %>
+		  	</div>
 	    <% end %>
 
 	</div>
