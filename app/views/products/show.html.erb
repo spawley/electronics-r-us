@@ -31,9 +31,13 @@
   <%= form_tag("/line_items", :controller => :line_items, remote: true,  method: "post") do %>
     <div class="input-group">
       <%= hidden_field_tag :tab , "line_item" %>
-      <%= number_field(:line_item, :quantity, in: 1.0..20.0, step: 1) %>
-      <%= hidden_field_tag "line_item[product_id]", @product.id %>
-      <%= submit_tag("Add to Cart") %>
+      <div style="display: inline-block;">
+        <%= number_field(:line_item, :quantity, in: 1.0..20.0, value: 1, min: 0, step: 1) %>
+      </div>
+      <div style="display: inline-block;">
+        <%= hidden_field_tag "line_item[product_id]", @product.id %>
+        <%= submit_tag("Add to Cart") %>
+      </div>
     </div>
   <% end %>
 </p>

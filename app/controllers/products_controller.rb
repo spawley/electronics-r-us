@@ -9,15 +9,33 @@ class ProductsController < ApplicationController
     @line_item = current_order.line_items.new
 
 
-    if @products.count() > 6
-      @products   = Product.all.limit(6)
-      @pagintated = Product.all.count() / 6.0
-    end
 
     @categories = Category.pluck(:name, :id)
 
     if params[:search]
+
+      if params[:search_param]
+
+        case params[:search_param]
+        when "all"
+            @products = Product.all.limit(6).search(params[:search]).order("created_at DESC")
+            @cat_value = nil
+          when "processors"
+            @products = Product.where('category_id = ?', 1).search(params[:search]).order("created_at DESC")
+            @cat_value = 1
+          when "Graphics Cards"
+            @products = Product.where('category_id = ?', 2).search(params[:search]).order("created_at DESC")
+            @cat_value = 2
+          when "computers"
+            @products = Product.where('category_id = ?', 3).search(params[:search]).order("created_at DESC")
+            @cat_value = 3
+        end
+
+      else
+
       @products = Product.search(params[:search]).order("created_at DESC")
+
+    end
     end
 
     case params[:category]
@@ -40,6 +58,11 @@ class ProductsController < ApplicationController
       @display = (params[:page].to_i - 1) * 6
 
       @products = Product.limit(6).offset(@display)
+    end
+
+    if @products.count() > 6
+      @products   = Product.all.limit(6)
+      @pagintated = Product.all.count() / 6.0
     end
 
   end
