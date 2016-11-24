@@ -17,18 +17,18 @@ class ProductsController < ApplicationController
       if params[:search_param]
 
         case params[:search_param]
-        when "all"
-            @products = Product.all.limit(6).search(params[:search]).order("created_at DESC")
-            @cat_value = nil
-          when "processors"
-            @products = Product.where('category_id = ?', 1).search(params[:search]).order("created_at DESC")
-            @cat_value = 1
-          when "Graphics Cards"
-            @products = Product.where('category_id = ?', 2).search(params[:search]).order("created_at DESC")
-            @cat_value = 2
-          when "computers"
-            @products = Product.where('category_id = ?', 3).search(params[:search]).order("created_at DESC")
-            @cat_value = 3
+          when "all"
+              @products = Product.all.limit(6).search(params[:search]).order("created_at DESC")
+              @cat_value = nil
+            when "processors"
+              @products = Product.where('category_id = ?', 1).search(params[:search]).order("created_at DESC")
+              @cat_value = 1
+            when "Graphics Cards"
+              @products = Product.where('category_id = ?', 2).search(params[:search]).order("created_at DESC")
+              @cat_value = 2
+            when "computers"
+              @products = Product.where('category_id = ?', 3).search(params[:search]).order("created_at DESC")
+              @cat_value = 3
         end
 
       else
