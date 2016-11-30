@@ -11,6 +11,7 @@ Rails.application.routes.draw do
 
   resources :line_items
   resource :cart, only: [:show]
+  resources :charges
 
   devise_for :admin_users, ActiveAdmin::Devise.config
   ActiveAdmin.routes(self)
