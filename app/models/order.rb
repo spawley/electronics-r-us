@@ -4,6 +4,9 @@ class Order < ActiveRecord::Base
   before_create :set_order_status
   before_save :update_subtotal
 
+  validates :customer_id, :order_status_id, presence: true
+
+
   def subtotal
     line_items.collect { |oi| oi.valid? ? (oi.quantity * oi.unit_price) : 0 }.sum
   end
