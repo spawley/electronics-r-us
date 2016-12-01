@@ -4,7 +4,7 @@ class Order < ActiveRecord::Base
   before_create :set_order_status
   before_save :update_subtotal
 
-  validates :customer_id, :order_status_id, presence: true
+  validates :order_status_id, presence: true
 
 
   def subtotal
