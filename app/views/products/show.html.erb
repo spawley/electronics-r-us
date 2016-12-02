@@ -4,7 +4,7 @@
 <p id="notice"><%= notice %></p>
 
 <div class="col-lg-4 col-sm-6 col-xs-12 custom-border" style="margin-right: 20px;">
-  <img src="<%=@product.image %>" class="thumbnail img-responsive">
+  <img src="<%=@product.image %>" alt="image" class="thumbnail img-responsive">
 </div>
 
 <p>
@@ -27,8 +27,8 @@
   <%= @product.stock_quantity %>
 </p>
 
-<p>
-  <%= form_tag("/line_items", :controller => :line_items, remote: true,  method: "post") do %>
+
+  <%= form_tag("/line_items", remote: true,  method: "post") do %>
     <div class="input-group">
       <%= hidden_field_tag :tab , "line_item" %>
       <div style="display: inline-block;">
@@ -40,4 +40,3 @@
       </div>
     </div>
   <% end %>
-</p>

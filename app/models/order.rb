@@ -6,7 +6,6 @@ class Order < ActiveRecord::Base
 
   validates :order_status_id, presence: true
 
-
   def subtotal
     line_items.collect { |oi| oi.valid? ? (oi.quantity * oi.unit_price) : 0 }.sum
   end

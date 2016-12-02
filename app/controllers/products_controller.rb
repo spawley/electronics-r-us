@@ -20,13 +20,13 @@ class ProductsController < ApplicationController
           when "all"
               @products = Product.all.limit(6).search(params[:search]).order("created_at DESC")
               @cat_value = nil
-            when "processors"
+            when "Processors"
               @products = Product.where('category_id = ?', 1).search(params[:search]).order("created_at DESC")
               @cat_value = 1
-            when "Graphics Cards"
+            when "GraphicsCards"
               @products = Product.where('category_id = ?', 2).search(params[:search]).order("created_at DESC")
               @cat_value = 2
-            when "computers"
+            when "Computers"
               @products = Product.where('category_id = ?', 3).search(params[:search]).order("created_at DESC")
               @cat_value = 3
         end
@@ -42,13 +42,13 @@ class ProductsController < ApplicationController
       when "Show All"
         @products = Product.all.limit(6)
         @cat_value = nil
-      when "processors"
+      when "Processors"
         @products = Product.where('category_id = ?', 1)
         @cat_value = 1
-      when "Graphics Cards"
+      when "GraphicsCards"
         @products = Product.where('category_id = ?', 2)
         @cat_value = 2
-      when "computers"
+      when "Computers"
         @products = Product.where('category_id = ?', 3)
         @cat_value = 3
     end
