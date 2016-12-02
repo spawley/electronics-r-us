@@ -4,11 +4,8 @@ class ProductsController < ApplicationController
   # GET /products
   # GET /products.json
   def index
-
-    @products   = Product.all
+    @products = Product.all
     @line_item = current_order.line_items.new
-
-
 
     @categories = Category.pluck(:name, :id)
 
@@ -17,40 +14,40 @@ class ProductsController < ApplicationController
       if params[:search_param]
 
         case params[:search_param]
-          when "all"
-              @products = Product.all.limit(6).search(params[:search]).order("created_at DESC")
-              @cat_value = nil
-            when "Processors"
-              @products = Product.where('category_id = ?', 1).search(params[:search]).order("created_at DESC")
-              @cat_value = 1
-            when "GraphicsCards"
-              @products = Product.where('category_id = ?', 2).search(params[:search]).order("created_at DESC")
-              @cat_value = 2
-            when "Computers"
-              @products = Product.where('category_id = ?', 3).search(params[:search]).order("created_at DESC")
-              @cat_value = 3
+        when 'all'
+          @products = Product.all.limit(6).search(params[:search]).order('created_at DESC')
+          @cat_value = nil
+        when 'Processors'
+          @products = Product.where('category_id = ?', 1).search(params[:search]).order('created_at DESC')
+          @cat_value = 1
+        when 'GraphicsCards'
+          @products = Product.where('category_id = ?', 2).search(params[:search]).order('created_at DESC')
+          @cat_value = 2
+        when 'Computers'
+          @products = Product.where('category_id = ?', 3).search(params[:search]).order('created_at DESC')
+          @cat_value = 3
         end
 
       else
 
-      @products = Product.search(params[:search]).order("created_at DESC")
+        @products = Product.search(params[:search]).order('created_at DESC')
 
     end
     end
 
     case params[:category]
-      when "Show All"
-        @products = Product.all.limit(6)
-        @cat_value = nil
-      when "Processors"
-        @products = Product.where('category_id = ?', 1)
-        @cat_value = 1
-      when "GraphicsCards"
-        @products = Product.where('category_id = ?', 2)
-        @cat_value = 2
-      when "Computers"
-        @products = Product.where('category_id = ?', 3)
-        @cat_value = 3
+    when 'Show All'
+      @products = Product.all.limit(6)
+      @cat_value = nil
+    when 'Processors'
+      @products = Product.where('category_id = ?', 1)
+      @cat_value = 1
+    when 'GraphicsCards'
+      @products = Product.where('category_id = ?', 2)
+      @cat_value = 2
+    when 'Computers'
+      @products = Product.where('category_id = ?', 3)
+      @cat_value = 3
     end
 
     if params[:page].to_i > 1
@@ -60,11 +57,10 @@ class ProductsController < ApplicationController
       @products = Product.limit(6).offset(@display)
     end
 
-    if @products.count() > 6
+    if @products.count > 6
       @products   = Product.all.limit(6)
-      @pagintated = Product.all.count() / 6.0
+      @pagintated = Product.all.count / 6.0
     end
-
   end
 
   # GET /products/1
@@ -79,8 +75,7 @@ class ProductsController < ApplicationController
   end
 
   # GET /products/1/edit
-  def edit
-  end
+  def edit; end
 
   # POST /products
   # POST /products.json
@@ -123,38 +118,36 @@ class ProductsController < ApplicationController
   end
 
   def contact
-    #$text = session[:my_key1]
+    # $text = session[:my_key1]
   end
 
   def about
-    #$text = session[:my_key1]
+    # $text = session[:my_key1]
   end
 
   def set_contact_text
-    #session[:my_key1] = 'my value'
-    #redirect_to "/"
+    # session[:my_key1] = 'my value'
+    # redirect_to "/"
 
     $contact_text = params[:my_field]
-
   end
 
   def set_about_text
-    #session[:my_key1] = 'my value'
-    #redirect_to "/"
+    # session[:my_key1] = 'my value'
+    # redirect_to "/"
 
     $about_text = params[:my_field]
-
   end
 
   private
-    # Use callbacks to share common setup or constraints between actions.
-    def set_product
-      @product = Product.find(params[:id])
-    end
 
-    # Never trust parameters from the scary internet, only allow the white list through.
-    def product_params
-      params.require(:product).permit(:name, :description, :price, :stock_quantity, :image, :created_at, :updated_at)
-    end
+  # Use callbacks to share common setup or constraints between actions.
+  def set_product
+    @product = Product.find(params[:id])
+  end
 
+  # Never trust parameters from the scary internet, only allow the white list through.
+  def product_params
+    params.require(:product).permit(:name, :description, :price, :stock_quantity, :image, :created_at, :updated_at)
+  end
 end

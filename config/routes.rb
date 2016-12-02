@@ -1,5 +1,5 @@
 Rails.application.routes.draw do
-  devise_for :users, path_names: { sign_in: 'login', sign_out: 'logout', sign_up: 'register' }, :controllers => { :registrations => 'registrations' }
+  devise_for :users, path_names: { sign_in: 'login', sign_out: 'logout', sign_up: 'register' }, controllers: { registrations: 'registrations' }
 
   get 'line_items/create'
 
@@ -22,13 +22,10 @@ Rails.application.routes.draw do
   get '/contact' => 'products#contact'
   get '/about'   => 'products#about'
 
-  get '/category'   => 'products#index'
-
+  get '/category' => 'products#index'
 
   post '/admin/contact/set_text' => 'products#set_contact_text'
   post '/admin/about/set_text'   => 'products#set_about_text'
 
-  #match "/admin/contact" => 'admin_users#ddd', via: :post
-
-
+  # match "/admin/contact" => 'admin_users#ddd', via: :post
 end

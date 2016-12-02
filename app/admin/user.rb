@@ -13,11 +13,11 @@ ActiveAdmin.register User do
   end
 
   form do |f|
-    f.inputs "Upload" do
+    f.inputs 'Upload' do
       f.input :name
       f.input :address
       f.input :email
-      f.input :province_id, :selected => '1', :as => :select, :collection => Province.all.map{|u| ["#{u.name}", u.id]}
+      f.input :province_id, selected: '1', as: :select, collection: Province.all.map { |u| [u.name.to_s, u.id] }
     end
     f.actions
   end
